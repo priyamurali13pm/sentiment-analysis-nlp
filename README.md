@@ -163,7 +163,7 @@ streamlit run app.py
 ## 📁 Project Structure
 
 ```
-├── app.py
+├── sentiment_app.py
 ├── sentiment_model.pkl
 ├── cleaned_reviews.csv
 ├── requirements.txt
