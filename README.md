@@ -1,190 +1,200 @@
-# Sentiment Analysis Dashboard – ChatGPT Reviews
+# 📊 Sentiment Analysis Dashboard – ChatGPT Reviews
 
-## Project Overview
-This project analyzes user reviews of ChatGPT to understand sentiment, user satisfaction, and product insights using NLP and machine learning.
-
-## Features
-- Sentiment classification (Positive / Neutral / Negative)
-- Sentiment vs Rating mismatch analysis
-- Platform-wise, location-wise, and version-wise insights
-- Sentiment trends over time
-- Verified vs non-verified user analysis
-- Review length vs sentiment
-- Negative feedback theme extraction
-- Interactive Streamlit dashboard
-- Real-time sentiment prediction for new reviews
-
-## Tech Stack
-- Python
-- Pandas, NumPy
-- Scikit-learn
-- Sentence Transformers (MiniLM)
-- Streamlit
-- Plotly, Matplotlib
-
-## How to Run
-```bash
-pip install -r requirements.txt
-streamlit run app.py
-# 📊 Sentiment Analysis Dashboard
-
-An end-to-end NLP-powered dashboard that analyzes user reviews, predicts sentiment, and generates actionable business insights using Machine Learning and Streamlit.
+An end-to-end NLP-powered analytics dashboard that analyzes ChatGPT user reviews, predicts sentiment, uncovers customer satisfaction trends, and generates actionable business insights.
 
 ---
 
-## 🚀 Project Overview
+## 🚀 Live Demo
 
-This project focuses on analyzing customer reviews to understand sentiment trends and provide meaningful insights for decision-making.
+🔗 Streamlit App: [Add Link After Deployment]
 
-It combines:
-
-* Natural Language Processing (NLP)
-* Machine Learning model predictions
-* Interactive Streamlit dashboard
-* Business insights & recommendations
+🔗 GitHub Repository: [Add Repository Link]
 
 ---
 
-## 🎯 Key Features
+## 🎯 Project Highlights
 
-✅ Sentiment Prediction (Positive / Neutral / Negative)
-✅ Interactive Dashboard with Filters (Platform, Location)
-✅ Real-time User Input Prediction
-✅ Model Evaluation (Accuracy, Precision, Recall, F1-score)
-✅ Confusion Matrix Visualization
-✅ Key Insights Generation
-✅ Business Recommendations Engine
+✅ Sentiment Classification (Positive / Neutral / Negative)
+
+✅ Real-Time Sentiment Prediction
+
+✅ Interactive Streamlit Dashboard
+
+✅ Platform-wise & Location-wise Analysis
+
+✅ Rating vs Sentiment Mismatch Detection
+
+✅ Customer Satisfaction Insights
+
+✅ Business Recommendation Engine
+
+✅ Model Performance Evaluation
 
 ---
 
-## 📸 Screenshots
+## 🧠 Problem Statement
 
-### 🔹 Dashboard Overview
+Organizations receive thousands of customer reviews every day, making it difficult to manually analyze user sentiment and identify improvement opportunities.
+
+This project leverages Natural Language Processing (NLP) and Machine Learning to automatically classify customer sentiment, visualize feedback patterns, and generate data-driven recommendations.
+
+---
+
+## ⚙️ Tech Stack
+
+### Programming & Analytics
+
+* Python
+* Pandas
+* NumPy
+
+### Machine Learning & NLP
+
+* Scikit-learn
+* Sentence Transformers (MiniLM)
+
+### Dashboard & Visualization
+
+* Streamlit
+* Plotly
+* Matplotlib
+* Seaborn
+
+---
+
+## 📂 Dataset Overview
+
+* Dataset: ChatGPT User Reviews
+* Records: 250+ Reviews
+* Features:
+
+  * Review Text
+  * Rating
+  * Platform
+  * Location
+  * Review Date
+  * Verified Status
+
+---
+
+## 🔍 Dashboard Features
+
+### 📈 Sentiment Distribution
+
+Visualize positive, neutral, and negative sentiment across reviews.
+
+### 🌍 Geographic Analysis
+
+Identify customer satisfaction trends across different locations.
+
+### 📱 Platform Performance
+
+Compare ratings and sentiment across platforms.
+
+### 📊 Model Evaluation
+
+Track:
+
+* Accuracy
+* Precision
+* Recall
+* F1 Score
+* Confusion Matrix
+
+### 🧠 Real-Time Prediction
+
+Enter a new review and instantly predict sentiment.
+
+---
+
+## 📸 Dashboard Preview
+
+### Dashboard Overview
 
 ![Dashboard](images/dashboard.png)
 
-### 🔹 Sentiment Distribution
+### Sentiment Analysis
 
-![Dashboard](images/Charts.png)
+![Charts](images/Charts.png)
 
-### 🔹 Model Evaluation
+### Model Evaluation
 
-![Dashboard](images/Evaluation.png)
+![Evaluation](images/Evaluation.png)
 
-### 🔹 Insights & Recommendations
+### Insights & Recommendations
 
-![Dashboard](images/Key_Insights.png)
-
----
-
-## 🧠 Tech Stack
-
-* **Python**
-* **Streamlit**
-* **Scikit-learn**
-* **Sentence-Transformers**
-* **Pandas, NumPy**
-* **Matplotlib, Seaborn, Plotly**
+![Insights](images/Key_Insights.png)
 
 ---
 
-## ⚙️ How It Works
+## 📊 Model Performance
 
-1. Load cleaned review dataset
-2. Convert text into embeddings using SentenceTransformer
-3. Predict sentiment using trained ML model
-4. Visualize trends using charts
-5. Evaluate model performance
-6. Generate insights & business recommendations
-
----
-
-## 📊 Model Evaluation
-
-The model is evaluated using:
-
-* Accuracy - 0.67
-* Precision - 0.72
-* Recall - 0.68
-* F1 Score - 0.66
-* Confusion Matrix
-
-This ensures reliable sentiment classification performance.
+| Metric    | Score |
+| --------- | ----- |
+| Accuracy  | 40%   |
+| Precision | 38%   |
+| Recall    | 22%   |
+| F1 Score  | 22%   |
 
 ---
 
-## 💡 Key Insights
+## 💡 Key Insights Generated
 
-The dashboard automatically identifies:
+The system automatically identifies:
 
-* Most common sentiment trend
-* Best and worst performing platforms
-* Location-based satisfaction trends
+* Dominant customer sentiment
+* Highest-rated platforms
+* Lowest-rated platforms
+* Regional satisfaction trends
 * Percentage of negative feedback
+* Customer experience patterns
 
 ---
 
-## 📌 Business Recommendations
+## 📌 Business Impact
 
-Based on analysis, the system suggests:
+✔ Improves customer feedback analysis
 
-* Areas needing improvement
-* Platform-specific performance issues
-* Customer satisfaction strategies
-* Retention & quality improvements
+✔ Enables data-driven decision-making
 
----
+✔ Identifies product improvement opportunities
 
-## 🎯 Impact
+✔ Supports customer retention strategies
 
-✔ Helps businesses understand customer feedback
-✔ Enables data-driven decision making
-✔ Identifies product/service issues quickly
-✔ Improves customer satisfaction strategies
+✔ Helps organizations monitor user satisfaction at scale
 
 ---
 
-## 🧪 Run Locally
+## 🛠️ Installation
 
 ```bash
-git clone <your-repo-link>
-cd project-folder
+git clone <repository-link>
 
-python -m venv .venv
-.\.venv\Scripts\activate
+cd sentiment-analysis-dashboard
 
 pip install -r requirements.txt
 
-streamlit run app.py
+streamlit run nlp.py
 ```
 
 ---
 
-## 📁 Project Structure
+## 🔮 Future Enhancements
 
-```
-├── sentiment_app.py
-├── sentiment_model.pkl
-├── cleaned_reviews.csv
-├── requirements.txt
-├── README.md
-```
-
----
-
-## 🔮 Future Improvements
-
-* Deploy on Streamlit Cloud / HuggingFace
-* Add real-time API integration
-* Enhance NLP model with deep learning
-* Add multilingual sentiment support
+* Multi-language sentiment analysis
+* Transformer-based fine-tuning
+* Topic Modeling
+* Emotion Detection
+* Real-time API Integration
+* Cloud Deployment
 
 ---
 
 ## 👩‍💻 Author
 
 **Priyadarshini**
-Aspiring Data Scientist | Passionate about AI & NLP
+
+Aspiring Data Scientist | AI & NLP Enthusiast
 
 ---
 

@@ -9,37 +9,51 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 import seaborn as sns
+import pickle
+import re
+
+model = pickle.load(open("sentiment_pipeline.pkl", "rb"))
 
 st.set_page_config(page_title="Sentiment Analysis Dashboard", layout="wide")
 
 st.title("📊 Sentiment Analysis Dashboard")
 st.markdown("Analyze user reviews, sentiment, and product insights")
 
+# -------------------- TEXT CLEANING --------------------
+def clean_text(text):
+    text = text.lower()
+    text = re.sub(r'[^a-zA-Z ]', '', text)
+    return text
+
 
 # -------------------- LOAD MODEL --------------------
 @st.cache_resource
 def load_model():
-    model = joblib.load("sentiment_model.pkl")
-    from sentence_transformers import SentenceTransformer
-    embedder = SentenceTransformer('all-MiniLM-L6-v2')
-    return model, embedder
+    model = joblib.load("sentiment_pipeline.pkl")
+    #from sentence_transformers import SentenceTransformer
+    #embedder = SentenceTransformer('all-MiniLM-L6-v2')
+    return model
 
 # -------------------- LOAD DATA --------------------
 @st.cache_data
 def load_data():
     return pd.read_csv("cleaned_reviews.csv")
 
-model, embedder = load_model()
+model = load_model()
 df = load_data()
+st.write(df.shape)
+
 
 # -------------------- ADD PREDICTIONS --------------------
 @st.cache_data
 def add_predictions(df):
-    embeddings = embedder.encode(df['text'].tolist(), show_progress_bar=False)
-    preds = model.predict(embeddings)
-    label_map = {0: 'Negative', 1: 'Neutral', 2: 'Positive'}
+    #embeddings = embedder.encode(df['text'].tolist(), show_progress_bar=False)
+    #preds = model.predict(embeddings)
+    preds = model.predict(df['text'])
+    #label_map = {0: 'Negative', 1: 'Neutral', 2: 'Positive'}
     df = df.copy()
-    df['predicted_sentiment'] = [label_map[p] for p in preds]
+    #df['predicted_sentiment'] = [label_map[p] for p in preds]
+    df['predicted_sentiment'] = [str(p).lower() for p in preds]
     return df
 
 df = add_predictions(df)
@@ -66,10 +80,11 @@ df_filtered = df[
 
 # -------------------- KPI SECTION --------------------
 st.subheader("📌 Key Metrics")
+st.write(df_filtered['predicted_sentiment'].unique())
 
 total_reviews = len(df_filtered)
 avg_rating = df_filtered['rating'].mean()
-positive_pct = (df_filtered['predicted_sentiment'] == 'Positive').mean() * 100
+positive_pct = (df_filtered['predicted_sentiment'] == 'positive').mean() * 100
 
 col1, col2, col3 = st.columns(3)
 col1.metric("Total Reviews", total_reviews)
@@ -114,9 +129,12 @@ st.divider()
 # -------------------- MODEL EVALUATION --------------------
 @st.cache_data
 def evaluate_model(df):
-    label_map_reverse = {'Negative': 0, 'Neutral': 1, 'Positive': 2}
-    y_true = df['sentiment'].map(label_map_reverse)
-    y_pred = df['predicted_sentiment'].map(label_map_reverse)
+    df = df.dropna(subset=['sentiment', 'predicted_sentiment'])
+    y_true = df['sentiment'].str.lower()
+    y_pred = df['predicted_sentiment']
+    #label_map_reverse = {'Negative': 0, 'Neutral': 1, 'Positive': 2}
+    #y_true = df['sentiment'].map(label_map_reverse)
+    #y_pred = df['predicted_sentiment'].map(label_map_reverse)
 
     acc = accuracy_score(y_true, y_pred)
     prec = precision_score(y_true, y_pred, average='weighted')
@@ -136,6 +154,7 @@ col2.metric("Precision", f"{prec:.2f}")
 col3.metric("Recall", f"{rec:.2f}")
 col4.metric("F1 Score", f"{f1:.2f}")
 
+st.subheader("📉 Confusion Matrix")
 fig, ax = plt.subplots()
 sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
             xticklabels=['Neg','Neu','Pos'],
@@ -191,10 +210,12 @@ st.subheader("🧠 Try Sentiment Prediction")
 user_text = st.text_area("Enter a review text")
 
 if st.button("Predict Sentiment"):
-    if user_text.strip():
-        emb = embedder.encode([user_text])
-        pred = model.predict(emb)[0]
-        label_map = {0:'Negative', 1:'Neutral', 2:'Positive'}
-        st.success(f"Predicted Sentiment: **{label_map[pred]}**")
+    if user_text.strip() != "":
+        #emb = embedder.encode([user_text])
+        #pred = model.predict(emb)[0]
+        prediction = model.predict([user_text])[0]
+        #label_map = {0:'Negative', 1:'Neutral', 2:'Positive'}
+        #st.success(f"Predicted Sentiment: **{label_map[pred]}**")
+        st.success(f"Predicted Sentiment: **{prediction}**")
     else:
         st.warning("Please enter some text.")
