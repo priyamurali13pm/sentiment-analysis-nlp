@@ -1,10 +1,2 @@
 streamlit
-pandas
-numpy
-matplotlib
-plotly
-scikit-learn
-sentence-transformers
-joblib
-nltk
-wordcloud
+
